@@ -1,4 +1,6 @@
 #include<iostream>
+#include<vector>
+#include<math.h>
 //#include"mylib.cpp"
 using namespace std;
 //--------------------------------------------------------------------
@@ -47,36 +49,32 @@ cout << array[i] << ", ";
 cout << " ]" << endl;
 }
 //--------------------------------------------------------------------
-// template<typename T> //naive approach
-// long sum_primes_up_to_num(T num){
-//   long sum = 0;
-//   auto i = num;
-//   i = 2;
-//   for(; i < num; i++){
-//     if(is_prime(i) == true){
-//     cout << endl << i ;
-//     sum += i;
-// }
-//   }
-//   return sum;
-// }
-//------------------------------------------------------------------------------
+
 template<typename T>
 long sum_primes_up_to_num(T num){
-  long sum = 0;
-  T i = 2;
-  T primes[num];
-  clear_array(primes, num);
-  T u = 0;
-  for(; i < num; i++){
-    if(is_prime(i) == true){
-        sum += i;
-        primes[u] = i;
-        u++;
-}
+  std::vector <T>primes = {2};
+  long sum = 2;
+  T i = 3;
+  bool is_prime = 0;
+  for(; i < num; i+=2){
+    //cout << endl << "i = " << i;
+    is_prime = true;
+    for(auto it = primes.begin(); *it <= floor(sqrt(i)); it++){
+      if((i % *it) == 0){
+        //cout << endl << primes.back();
+        is_prime = false;
+        break;
+      }
+      }
+      if(is_prime == true){
+        cout << endl << "adding " << i << " to primes vector.";
+    sum += i;
+    primes.push_back(i);
   }
+          }
   return sum;
 }
+
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 
